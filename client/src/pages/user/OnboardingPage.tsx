@@ -1,18 +1,17 @@
 import { Box } from "@mui/material";
 import { useEffect } from "react";
-import {  useParams } from "react-router-dom";
+import {  useNavigate, useParams } from "react-router-dom";
 import { pageMapper } from "../../features/onboarding/pageMapper";
-import useNavigateWithSound from "../../features/sound/hooks/useNavigateWithSound";
 
 const OnboardingPage = () => {
   const { page } = useParams();
-  const navigateWithSound = useNavigateWithSound();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!page) {
-      navigateWithSound("/user/onboarding/1");
+      navigate("/user/onboarding/1");
     }
-  }, [page, navigateWithSound]);
+  }, [page, navigate]);
 
   return <Box>
     {

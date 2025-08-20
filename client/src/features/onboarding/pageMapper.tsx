@@ -1,23 +1,20 @@
-import MeetOthers from "./components/MeetOthers";
-import WhatSherryWants from "./components/WhatSherryWants";
-import MeetSherry from "./components/MeetSherry";
-import useNavigateWithSound from "../sound/hooks/useNavigateWithSound";
-import SplashScreen from "./components/SplashScreen";
+import Home from "./components/Home";
 import HowToPlay from "./components/HowToPlay";
+import { useNavigate } from "react-router-dom";
 
 export const pageMapper = (page: number) => {
-  const navigateWithSound = useNavigateWithSound();
+  const navigate = useNavigate();
 
   const handleNextPage = () => {
     if (page < 2) {
-      navigateWithSound(`/user/onboarding/${page + 1}`);
+      navigate(`/user/onboarding/${page + 1}`);
     } else {
-      navigateWithSound("/user/login");
+      navigate("/user/game"); // Navigate to game instead of login
     }
   };
 
   if (page === 1) {
-    return <SplashScreen handleNextPage={handleNextPage} />;
+    return <Home handleNextPage={handleNextPage} />;
   }
   if (page === 2) {
     return <HowToPlay handleNextPage={handleNextPage} />;
