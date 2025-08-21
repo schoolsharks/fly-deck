@@ -1,7 +1,7 @@
-import SkyCruiser from "../../features/result /components/SkyCruiser";
-import ClaimYourReward from "../../features/result /components/ClaimYourReward";
+import SkyCruiser from "../../features/result/components/SkyCruiser";
+import ClaimYourReward from "../../features/result/components/ClaimYourReward";
 import { Box } from "@mui/material";
-import Buttons from "../../features/result /components/Buttons";
+import Buttons from "../../features/result/components/Buttons";
 import { useEffect, useState } from "react";
 import { getAccessFullGameData } from "../../utility/sessionStorage";
 
