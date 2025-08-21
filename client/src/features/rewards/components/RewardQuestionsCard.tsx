@@ -79,7 +79,7 @@ const RewardQuestionsCard = ({
   const [isInterestedSelected, setIsInterestedSelected] = useState(false);
 
   // Total cards = questions + 1 final image card
-  const totalCards = rewardQuestions.length + 1;
+//   const totalCards = rewardQuestions.length + 1;
   const isOnFinalCard = currentIndex === rewardQuestions.length;
 
   // Notify parent when we reach the final card
