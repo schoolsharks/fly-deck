@@ -3,12 +3,36 @@ import LogoHeader from "../../../components/ui/LogoHeader";
 import AccessFullGameImage from "../../../assets/Registration/AccessFullGame.webp";
 import SlideButton from "../../../components/ui/SlideButton";
 import { useNavigate } from "react-router-dom";
+import {
+  saveAccessFullGameData,
+  type AccessFullGameData,
+} from "../../../utility/sessionStorage";
 
 const AccessFullGame = () => {
   const navigate = useNavigate();
+
   const handleNextPage = () => {
+    // Save claim action to session storage
+    const accessData: AccessFullGameData = {
+      action: "claim",
+      completedAt: new Date().toISOString(),
+    };
+    saveAccessFullGameData(accessData);
+
     // Logic to navigate to the next page
-    navigate("/user/game/answer-to-unlock");
+    navigate("/user/game/reward-questions");
+  };
+
+  const handleSkip = () => {
+    // Save skip action to session storage
+    const accessData: AccessFullGameData = {
+      action: "skip",
+      completedAt: new Date().toISOString(),
+    };
+    saveAccessFullGameData(accessData);
+
+    // Logic to skip to the next page
+    navigate("/user/game/result-page");
   };
 
   return (
@@ -93,7 +117,35 @@ const AccessFullGame = () => {
             px: "20px", // Add horizontal padding
           }}
         >
-          <SlideButton text="Play" onSlideComplete={handleNextPage} />
+          <SlideButton text="Claim" onSlideComplete={handleNextPage} />
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            width: "100%",
+            // mt: "30px",
+            mb: "30px",
+            px: "20px", // Add horizontal padding
+          }}
+        >
+          <button
+            style={{
+              backgroundColor: "transparent",
+              color: "#FFFFFF",
+              border: "none",
+              borderRadius: "8px",
+              padding: "10px 20px",
+              cursor: "pointer",
+              fontSize: "16px",
+              marginLeft: "10px",
+              fontFamily: "Inter",
+              opacity: "50%",
+            }}
+            onClick={handleSkip}
+          >
+            Skip
+          </button>
         </Box>
       </Box>
     </>

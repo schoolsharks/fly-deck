@@ -76,7 +76,7 @@ const AlmostThere = () => {
           px: "20px", // Add horizontal padding
         }}
       >
-        <SlideButton text="Play" onSlideComplete={handleNextPage} />
+        <SlideButton text="Unlock your personality" onSlideComplete={handleNextPage} />
       </Box>
     </Box>
   );

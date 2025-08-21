@@ -4,8 +4,11 @@ import { AnimatePresence } from "framer-motion";
 import AnimatedPage from "../../components/layout/AnimatedPage";
 import AlmostThere from "../../features/registeration/components/AlmostThere";
 import GamePage from "./GamePage";
-import AnswerToUnlock from "../../features/registeration/components/AnswerToUnlock";
 import AccessFullGame from "../../features/registeration/components/AccessFullGame";
+import RewardQuestions from "../../features/rewards/components/RewardQuestions";
+import Submission from "../../features/rewards/components/Submission";
+import ResultPage from "./ResultPage";
+import AnswerToUnlockPage from "./AnswerToUnlockPage";
 
 const UserMain = () => {
   const location = useLocation();
@@ -42,21 +45,47 @@ const UserMain = () => {
             path="/game/answer-to-unlock"
             element={
               <AnimatedPage>
-                <AnswerToUnlock />
+                <AnswerToUnlockPage />
               </AnimatedPage>
             }
           />
           <Route
-            path="/game/Access-Full-Game"
+            path="/game/access-full-game"
             element={
               <AnimatedPage>
                 <AccessFullGame />
               </AnimatedPage>
             }
           />
+          <Route
+            path="/game/reward-questions"
+            element={
+              <AnimatedPage>
+                <RewardQuestions />
+              </AnimatedPage>
+            }
+          />
+          <Route
+            path="/game/submission"
+            element={
+              <AnimatedPage>
+                <Submission />
+              </AnimatedPage>
+            }
+          />
+          <Route
+            path="/game/result-page"
+            element={
+              <AnimatedPage>
+                <ResultPage />
+              </AnimatedPage>
+            }
+          />
           <Route path="*" element={<Navigate to="/user/onboarding/1" />} />
         </Routes>
       </AnimatePresence>
+
+      
     </div>
   );
 };

@@ -11,7 +11,12 @@ import {
 } from "@mui/material";
 import SlideButton from "../../../components/ui/SlideButton";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import {
+  saveAnswerToUnlockData,
+  getAnswerToUnlockData,
+  type AnswerToUnlockData,
+} from "../../../utility/sessionStorage";
 
 const AnswerToUnlock = () => {
   const navigate = useNavigate();
@@ -26,6 +31,21 @@ const AnswerToUnlock = () => {
     termsAccepted: false,
   });
 
+  // Load existing form data on component mount
+  useEffect(() => {
+    const existingData = getAnswerToUnlockData();
+    if (existingData) {
+      setFormData({
+        startupBrandName: existingData.startupBrandName,
+        field2: existingData.field2,
+        field3: existingData.field3,
+        field4: existingData.field4,
+        field5: existingData.field5,
+        termsAccepted: existingData.termsAccepted,
+      });
+    }
+  }, []);
+
   // Dropdown options (you can customize these based on your requirements)
   const dropdownOptions = {
     field2: ["Option 1", "Option 2", "Option 3", "Option 4"],
@@ -35,13 +55,28 @@ const AnswerToUnlock = () => {
   };
 
   const handleInputChange = (field: string, value: any) => {
-    setFormData((prev) => ({
-      ...prev,
+    const updatedFormData = {
+      ...formData,
       [field]: value,
-    }));
+    };
+    setFormData(updatedFormData);
+
+    // Save to session storage immediately on change
+    const answerToUnlockData: AnswerToUnlockData = {
+      ...updatedFormData,
+      completedAt: new Date().toISOString(),
+    };
+    saveAnswerToUnlockData(answerToUnlockData);
   };
 
   const handleNextPage = () => {
+    // Save final data before navigation
+    const finalData: AnswerToUnlockData = {
+      ...formData,
+      completedAt: new Date().toISOString(),
+    };
+    saveAnswerToUnlockData(finalData);
+
     // Logic to navigate to the next page
     navigate("/user/game/access-full-game");
   };
@@ -126,7 +161,7 @@ const AnswerToUnlock = () => {
                 fontSize: "16px",
                 lineHeight: "100%",
                 color: "#ffffff",
-                marginTop:"16px",
+                marginTop: "16px",
                 paddingBottom: "8px",
                 "&::placeholder": {
                   fontFamily: "Inter",
@@ -301,7 +336,8 @@ const AnswerToUnlock = () => {
                   color: "#ffffff",
                 }}
               >
-                Revenue generated in <br/>last 12 months(INR)*
+                Revenue generated in <br />
+                last 12 months(INR)*
               </MenuItem>
               {dropdownOptions.field4.map((option, index) => (
                 <MenuItem
@@ -425,7 +461,7 @@ const AnswerToUnlock = () => {
             px: "20px", // Add horizontal padding
           }}
         >
-          <SlideButton text="Play" onSlideComplete={handleNextPage} />
+          <SlideButton text="Submit" onSlideComplete={handleNextPage} />
         </Box>
       </Box>
     </>

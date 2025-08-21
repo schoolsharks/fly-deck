@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
 import CardIndicator from "./CardIndicator";
 import CardsMain from "./CardsMain";
 import LogoHeader from "../../../components/ui/LogoHeader";
+import {
+  saveGameData,
+  getGameData,
+  type GameData,
+} from "../../../utility/sessionStorage";
 
 // Static game data
 export interface Question {
@@ -94,6 +99,28 @@ const GameLayout = () => {
   const [answers, setAnswers] = useState<any[]>([]);
   const navigate = useNavigate();
 
+  // Load existing game data on component mount
+  useEffect(() => {
+    const existingGameData = getGameData();
+    if (existingGameData) {
+      setCurrentIndex(existingGameData.currentIndex);
+      setAnswers(existingGameData.answers);
+    }
+  }, []);
+
+  // Save game data whenever answers or currentIndex changes
+  useEffect(() => {
+    if (answers.length > 0 || currentIndex > 0) {
+      const gameData: GameData = {
+        answers,
+        currentIndex,
+        totalQuestions: gameQuestions.length,
+        completedAt: new Date().toISOString(),
+      };
+      saveGameData(gameData);
+    }
+  }, [answers, currentIndex]);
+
   const handleSwipe = (direction: "left" | "right") => {
     console.log(
       "Swipe detected:",
@@ -111,18 +138,23 @@ const GameLayout = () => {
         : currentQuestion.option2.value;
 
     // Save answer
-    setAnswers((prev) => {
-      const newAnswers = [...prev, selectedAnswer];
-      console.log("Updated answers:", newAnswers);
-      return newAnswers;
-    });
+    const newAnswers = [...answers, selectedAnswer];
+    setAnswers(newAnswers);
+    console.log("Updated answers:", newAnswers);
 
     // Move to next question or finish game
     if (currentIndex < gameQuestions.length - 1) {
       console.log("Moving to next question:", currentIndex + 1);
       setCurrentIndex((prev) => prev + 1);
     } else {
-      // Game finished - navigate to AlmostThere page
+      // Game finished - save final data and navigate to AlmostThere page
+      const finalGameData: GameData = {
+        answers: newAnswers,
+        currentIndex: currentIndex + 1,
+        totalQuestions: gameQuestions.length,
+        completedAt: new Date().toISOString(),
+      };
+      saveGameData(finalGameData);
       console.log("Game finished! Navigating to AlmostThere page...");
       navigate("/user/game/almost-there");
     }
