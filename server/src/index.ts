@@ -4,7 +4,7 @@ import morgan from "morgan";
 // import helmet from "helmet";
 import cors from "cors";
 import path from "path";
-import connectDB from "./config/db";
+// import connectDB from "./config/db";
 import v1Routes from "./routes/v1/index";
 import errorHandlerMiddleware from "./middlewares/errorHandler";
 import notFoundMiddleware from "./middlewares/notFound";
@@ -13,7 +13,7 @@ import cookieParser from "cookie-parser";
 
 dotenv.config({ path: path.resolve(process.cwd(), '.env') });
 
-connectDB();
+// connectDB();
 
 const app = express();
 
