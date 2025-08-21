@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import LogoHeader from "../../game/components/LogoHeader";
+import LogoHeader from "../../../components/ui/LogoHeader";
 import CardsImage from "../../../assets/HowToPlay/Cards.webp";
 import Arrow from "../../../assets/HowToPlay/Arrow.png";
 import SlideButton from "../../../components/ui/SlideButton";
@@ -58,7 +58,7 @@ const HowToPlay: React.FC<HowToPlayProps> = ({ handleNextPage }) => {
             display: "flex",
             justifyContent: "space-between",
             padding: "0 20px",
-            mt:"-40px"
+            mt: "-40px",
           }}
         >
           <Typography
@@ -90,59 +90,64 @@ const HowToPlay: React.FC<HowToPlayProps> = ({ handleNextPage }) => {
             second option
           </Typography>
         </Box>
-        <Box sx={{
-           position: "absolute",
+        <Box
+          sx={{
+            position: "absolute",
             // bottom: "20px",
             width: "100%",
             display: "flex",
             justifyContent: "space-between",
             padding: "0 20px",
-            mt:"70px",
+            mt: "70px",
             px: "30px",
-        }}>
+          }}
+        >
           <img
             src={Arrow}
             alt="Arrow"
-            style={{ height: "22px", width: "67px",  }}
+            style={{ height: "22px", width: "67px" }}
           />
           <img
             src={Arrow}
             alt="Arrow"
-            style={{ height: "22px", width: "67px" , transform: "scaleX(-1)" }}
+            style={{ height: "22px", width: "67px", transform: "scaleX(-1)" }}
           />
         </Box>
-
       </Box>
 
-      <Box sx={{
-        mt: "80px",
-        px: "30px",
-      }}> 
-        <Typography sx={{
-          fontFamily: "Inter",
-          fontWeight: 500,
-          fontSize: "20px",
-          lineHeight: "29px",
-          letterSpacing: "0%",
-          textAlign: "left",
-          color: "#FFFFFF",
-        }}>
+      <Box
+        sx={{
+          mt: "80px",
+          px: "30px",
+        }}
+      >
+        <Typography
+          sx={{
+            fontFamily: "Inter",
+            fontWeight: 500,
+            fontSize: "20px",
+            lineHeight: "29px",
+            letterSpacing: "0%",
+            textAlign: "left",
+            color: "#FFFFFF",
+          }}
+        >
           Keep answering to unlock your Archetype.
         </Typography>
       </Box>
 
       <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            width: "100%",
-            mt: "30px",
-            mb: "30px",
-            px: "20px", // Add horizontal padding
-          }}
-        >
-          <SlideButton text="Play" onSlideComplete={handleNextPage} />
-        </Box>
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          width: "100%",
+          mt: "30px",
+          mb: "30px",
+          px: "20px", // Add horizontal padding
+        }}
+      >
+        <SlideButton text="Play" onSlideComplete={handleNextPage} />
+      </Box>
     </Box>
   );
 };

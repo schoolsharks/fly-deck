@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
 import CardIndicator from "./CardIndicator";
 import CardsMain from "./CardsMain";
-import LogoHeader from "./LogoHeader";
+import LogoHeader from "../../../components/ui/LogoHeader";
 
 // Static game data
 export interface Question {
@@ -95,7 +95,14 @@ const GameLayout = () => {
   const navigate = useNavigate();
 
   const handleSwipe = (direction: "left" | "right") => {
-    console.log("Swipe detected:", direction, "Current index:", currentIndex);
+    console.log(
+      "Swipe detected:",
+      direction,
+      "Current index:",
+      currentIndex,
+      "Total questions:",
+      gameQuestions.length
+    );
 
     const currentQuestion = gameQuestions[currentIndex];
     const selectedAnswer =
@@ -116,7 +123,8 @@ const GameLayout = () => {
       setCurrentIndex((prev) => prev + 1);
     } else {
       // Game finished - navigate to AlmostThere page
-      navigate("/game/almost-there");
+      console.log("Game finished! Navigating to AlmostThere page...");
+      navigate("/user/game/almost-there");
     }
   };
 

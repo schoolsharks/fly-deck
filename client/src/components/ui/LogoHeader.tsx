@@ -1,6 +1,6 @@
 import { Box } from '@mui/material'
-import FirstWingLogo from "../../../assets/Logos/FirstWing.webp";
-import IDFCFirstBankLogo from "../../../assets/Logos/IDFCFirstBank.webp";
+import FirstWingLogo from "../../assets/Logos/FirstWing.webp";
+import IDFCFirstBankLogo from "../../assets/Logos/IDFCFirstBank.webp";
 
 
 const LogoHeader = () => {

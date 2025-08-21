@@ -1,7 +1,8 @@
 import { Box, Typography } from "@mui/material";
-import LogoHeader from "./LogoHeader";
+import LogoHeader from "../../../components/ui/LogoHeader";
 import AlmostThereImage from "../../../assets/Game/AlmostThere.webp";
 import SlideButton from "../../../components/ui/SlideButton";
+import { useNavigate } from "react-router";
 
 // interface AlmostThereProps {
 //   handleNextPage: () => void;
@@ -9,10 +10,11 @@ import SlideButton from "../../../components/ui/SlideButton";
 // }
 
 const AlmostThere = () => {
-
-    const handleNextPage = () => {
-        // Logic to navigate to the next page
-    };
+  const navigate = useNavigate();
+  const handleNextPage = () => {
+    // Logic to navigate to the next page
+    navigate("/user/game/answer-to-unlock");
+  };
 
   return (
     <Box

@@ -2,8 +2,10 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import OnboardingPage from "./OnboardingPage";
 import { AnimatePresence } from "framer-motion";
 import AnimatedPage from "../../components/layout/AnimatedPage";
-import GameLayout from "../../features/game/components/GameLayout";
-import AlmostThere from "../../features/game/components/AlmostThere";
+import AlmostThere from "../../features/registeration/components/AlmostThere";
+import GamePage from "./GamePage";
+import AnswerToUnlock from "../../features/registeration/components/AnswerToUnlock";
+import AccessFullGame from "../../features/registeration/components/AccessFullGame";
 
 const UserMain = () => {
   const location = useLocation();
@@ -24,7 +26,7 @@ const UserMain = () => {
             path="/game"
             element={
               <AnimatedPage>
-                <GameLayout />
+                <GamePage />
               </AnimatedPage>
             }
           />
@@ -32,7 +34,23 @@ const UserMain = () => {
             path="/game/almost-there"
             element={
               <AnimatedPage>
-                <AlmostThere   />
+                <AlmostThere />
+              </AnimatedPage>
+            }
+          />
+          <Route
+            path="/game/answer-to-unlock"
+            element={
+              <AnimatedPage>
+                <AnswerToUnlock />
+              </AnimatedPage>
+            }
+          />
+          <Route
+            path="/game/Access-Full-Game"
+            element={
+              <AnimatedPage>
+                <AccessFullGame />
               </AnimatedPage>
             }
           />
