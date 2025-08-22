@@ -146,6 +146,7 @@ const SlideButton: React.FC<SlideButtonProps> = ({ text, onSlideComplete }) => {
             letterSpacing: "0%",
             textAlign: "center",
             color: "#ffffff",
+            marginLeft: text.length > 20 ? "28px" : "0",
             zIndex: 2,
             pointerEvents: "none",
             opacity: isDragging ? 0 : 1, // Hide text when dragging

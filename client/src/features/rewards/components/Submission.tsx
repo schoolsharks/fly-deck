@@ -73,10 +73,9 @@ const Submission = () => {
           sx={{
             textAlign: "center",
             marginTop: "34px",
-            maxWidth: "80%",
+            maxWidth: "75%",
             mx: "auto",
             fontFamily: "Inter",
-            px: "20px", // Add horizontal padding
           }}
         >
           <Typography
@@ -120,8 +119,10 @@ const Submission = () => {
             border: "1px solid #FFFFFF",
             borderRadius: "18px",
             p: "20px",
-            mx: "60px",
             my: "40px",
+            width: "100%",
+            maxWidth: "75%",
+            mx: "auto",
             background: "transparent",
           }}
         >

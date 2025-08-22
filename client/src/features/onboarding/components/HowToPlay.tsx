@@ -13,7 +13,7 @@ const HowToPlay: React.FC<HowToPlayProps> = ({ handleNextPage }) => {
     <Box
       sx={{
         background: "linear-gradient(180deg, #110200 48.86%, #730206 100%)",
-        minHeight: "100vh ",
+        paddingBottom: "30px",
       }}
     >
       <Box sx={{ paddingTop: "40px" }}>
@@ -22,8 +22,8 @@ const HowToPlay: React.FC<HowToPlayProps> = ({ handleNextPage }) => {
 
       <Typography
         sx={{
-          fontFamily: "Helvetica Neue",
-          fontWeight: 500,
+          fontFamily: `sans-serif`,
+          fontWeight: 800,
           fontSize: "30px",
           lineHeight: "29px",
           letterSpacing: "0%",
@@ -132,7 +132,7 @@ const HowToPlay: React.FC<HowToPlayProps> = ({ handleNextPage }) => {
             color: "#FFFFFF",
             // pl:"10px"
             // maxWidth:"90%",
-            mx:"auto"
+            mx: "auto",
           }}
         >
           Keep answering to unlock your Archetype.
@@ -145,8 +145,8 @@ const HowToPlay: React.FC<HowToPlayProps> = ({ handleNextPage }) => {
           justifyContent: "center",
           width: "100%",
           mt: "30px",
-          mb: "30px",
-          px: "20px", // Add horizontal padding
+          // mb: "30px",
+          px: "24px",
         }}
       >
         <SlideButton text="Play" onSlideComplete={handleNextPage} />

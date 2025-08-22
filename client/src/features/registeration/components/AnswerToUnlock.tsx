@@ -95,373 +95,371 @@ const AnswerToUnlock = () => {
         <Box sx={{ paddingTop: "40px" }}>
           <LogoHeader />
         </Box>
-
-        <Box
-          sx={{
-            textAlign: "center",
-            marginTop: "34px",
-            maxWidth: "80%",
-            mx: "auto",
-          }}
-        >
-          <Typography
+        <Box px="24px">
+          <Box
             sx={{
-              fontWeight: 500,
-              fontSize: "30px",
-              lineHeight: "35px",
               textAlign: "center",
-              mb: "32px",
+              marginTop: "34px",
+              maxWidth: "80%",
+              mx: "auto",
             }}
           >
-            Answer to Unlock
-          </Typography>
-        </Box>
+            <Typography
+              sx={{
+                fontWeight: 500,
+                fontSize: "30px",
+                lineHeight: "35px",
+                textAlign: "center",
+                mb: "32px",
+              }}
+            >
+              Answer to Unlock
+            </Typography>
+          </Box>
 
-        {/* registration form container */}
-        <Box
-          sx={{
-            border: "2px solid #ffffff",
-            borderRadius: "28px",
-            width: "80%",
-            minHeight: "490px",
-            mx: "auto",
-            p: "24px",
-            display: "flex",
-            flexDirection: "column",
-            gap: "30px",
-          }}
-        >
-          {/* Startup Brand Name - Text Input */}
-          <TextField
-            fullWidth
-            value={formData.startupBrandName}
-            onChange={(e) =>
-              handleInputChange("startupBrandName", e.target.value)
-            }
-            placeholder="Startup Brand Name*"
-            variant="standard"
-            required
+          {/* registration form container */}
+          <Box
             sx={{
-              "& .MuiInput-root": {
-                backgroundColor: "transparent",
-                "&:before": {
-                  borderBottomColor: "#ffffff",
-                  borderBottomWidth: "1px",
-                },
-                "&:hover:not(.Mui-disabled):before": {
-                  borderBottomColor: "#ffffff",
-                },
-                "&:after": {
-                  borderBottomColor: "#ffffff",
-                },
-              },
-              "& .MuiInput-input": {
-                fontFamily: "Inter",
-                fontWeight: 400,
-                fontSize: "16px",
-                lineHeight: "100%",
-                color: "#ffffff",
-                marginTop: "16px",
-                paddingBottom: "8px",
-                "&::placeholder": {
-                  fontFamily: "Inter",
-                  fontWeight: 400,
-                  fontSize: "16px",
-                  lineHeight: "100%",
-                  color: "#ffffff",
-                  opacity: 1,
-                },
-              },
+              border: "2px solid #ffffff",
+              borderRadius: "28px",
+              minHeight: "490px",
+              p: "24px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "30px",
             }}
-          />
-
-          {/* Field 2 - Dropdown */}
-          <FormControl fullWidth variant="standard">
-            <Select
-              value={formData.field2}
-              onChange={(e) => handleInputChange("field2", e.target.value)}
-              displayEmpty
+          >
+            {/* Startup Brand Name - Text Input */}
+            <TextField
+              fullWidth
+              value={formData.startupBrandName}
+              onChange={(e) =>
+                handleInputChange("startupBrandName", e.target.value)
+              }
+              placeholder="Startup Brand Name*"
+              variant="standard"
+              required
               sx={{
-                backgroundColor: "transparent",
-                "&:before": {
-                  borderBottomColor: "#ffffff",
-                  borderBottomWidth: "1px",
+                "& .MuiInput-root": {
+                  backgroundColor: "transparent",
+                  "&:before": {
+                    borderBottomColor: "#ffffff",
+                    borderBottomWidth: "1px",
+                  },
+                  "&:hover:not(.Mui-disabled):before": {
+                    borderBottomColor: "#ffffff",
+                  },
+                  "&:after": {
+                    borderBottomColor: "#ffffff",
+                  },
                 },
-                "&:hover:not(.Mui-disabled):before": {
-                  borderBottomColor: "#ffffff",
-                },
-                "&:after": {
-                  borderBottomColor: "#ffffff",
-                },
-                "& .MuiSelect-select": {
+                "& .MuiInput-input": {
                   fontFamily: "Inter",
                   fontWeight: 400,
                   fontSize: "16px",
                   lineHeight: "100%",
                   color: "#ffffff",
+                  marginTop: "16px",
                   paddingBottom: "8px",
-                },
-                "& .MuiSvgIcon-root": {
-                  color: "#ffffff",
-                },
-              }}
-            >
-              <MenuItem
-                value=""
-                disabled
-                sx={{
-                  fontFamily: "Inter",
-                  fontWeight: 400,
-                  fontSize: "16px",
-                  color: "#ffffff",
-                }}
-              >
-                Startup sector*
-              </MenuItem>
-              {dropdownOptions.field2.map((option, index) => (
-                <MenuItem
-                  key={index}
-                  value={option}
-                  sx={{
+                  "&::placeholder": {
                     fontFamily: "Inter",
                     fontWeight: 400,
                     fontSize: "16px",
-                    color: "#000000",
-                  }}
-                >
-                  {option}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-
-          {/* Field 3 - Dropdown */}
-          <FormControl fullWidth variant="standard">
-            <Select
-              value={formData.field3}
-              onChange={(e) => handleInputChange("field3", e.target.value)}
-              displayEmpty
-              sx={{
-                backgroundColor: "transparent",
-                "&:before": {
-                  borderBottomColor: "#ffffff",
-                  borderBottomWidth: "1px",
-                },
-                "&:hover:not(.Mui-disabled):before": {
-                  borderBottomColor: "#ffffff",
-                },
-                "&:after": {
-                  borderBottomColor: "#ffffff",
-                },
-                "& .MuiSelect-select": {
-                  fontFamily: "Inter",
-                  fontWeight: 400,
-                  fontSize: "16px",
-                  lineHeight: "100%",
-                  color: "#ffffff",
-                  paddingBottom: "8px",
-                },
-                "& .MuiSvgIcon-root": {
-                  color: "#ffffff",
+                    lineHeight: "100%",
+                    color: "#ffffff",
+                    opacity: 1,
+                  },
                 },
               }}
-            >
-              <MenuItem
-                value=""
-                disabled
+            />
+
+            {/* Field 2 - Dropdown */}
+            <FormControl fullWidth variant="standard">
+              <Select
+                value={formData.field2}
+                onChange={(e) => handleInputChange("field2", e.target.value)}
+                displayEmpty
                 sx={{
-                  fontFamily: "Inter",
-                  fontWeight: 400,
-                  fontSize: "16px",
-                  color: "#ffffff",
-                }}
-              >
-                Latest funding stage*
-              </MenuItem>
-              {dropdownOptions.field3.map((option, index) => (
-                <MenuItem
-                  key={index}
-                  value={option}
-                  sx={{
+                  backgroundColor: "transparent",
+                  "&:before": {
+                    borderBottomColor: "#ffffff",
+                    borderBottomWidth: "1px",
+                  },
+                  "&:hover:not(.Mui-disabled):before": {
+                    borderBottomColor: "#ffffff",
+                  },
+                  "&:after": {
+                    borderBottomColor: "#ffffff",
+                  },
+                  "& .MuiSelect-select": {
                     fontFamily: "Inter",
                     fontWeight: 400,
                     fontSize: "16px",
-                    color: "#000000",
-                  }}
-                >
-                  {option}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-
-          {/* Field 4 - Dropdown */}
-          <FormControl fullWidth variant="standard">
-            <Select
-              value={formData.field4}
-              onChange={(e) => handleInputChange("field4", e.target.value)}
-              displayEmpty
-              sx={{
-                backgroundColor: "transparent",
-                "&:before": {
-                  borderBottomColor: "#ffffff",
-                  borderBottomWidth: "1px",
-                },
-                "&:hover:not(.Mui-disabled):before": {
-                  borderBottomColor: "#ffffff",
-                },
-                "&:after": {
-                  borderBottomColor: "#ffffff",
-                },
-                "& .MuiSelect-select": {
-                  fontFamily: "Inter",
-                  fontWeight: 400,
-                  fontSize: "16px",
-                  lineHeight: "100%",
-                  color: "#ffffff",
-                  paddingBottom: "8px",
-                },
-                "& .MuiSvgIcon-root": {
-                  color: "#ffffff",
-                },
-              }}
-            >
-              <MenuItem
-                value=""
-                disabled
-                sx={{
-                  fontFamily: "Inter",
-                  fontWeight: 400,
-                  fontSize: "16px",
-                  color: "#ffffff",
-                }}
-              >
-                Revenue generated in <br />
-                last 12 months(INR)*
-              </MenuItem>
-              {dropdownOptions.field4.map((option, index) => (
-                <MenuItem
-                  key={index}
-                  value={option}
-                  sx={{
-                    fontFamily: "Inter",
-                    fontWeight: 400,
-                    fontSize: "16px",
-                    color: "#000000",
-                  }}
-                >
-                  {option}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-
-          {/* Field 5 - Dropdown */}
-          <FormControl fullWidth variant="standard">
-            <Select
-              value={formData.field5}
-              onChange={(e) => handleInputChange("field5", e.target.value)}
-              displayEmpty
-              sx={{
-                backgroundColor: "transparent",
-                "&:before": {
-                  borderBottomColor: "#ffffff",
-                  borderBottomWidth: "1px",
-                },
-                "&:hover:not(.Mui-disabled):before": {
-                  borderBottomColor: "#ffffff",
-                },
-                "&:after": {
-                  borderBottomColor: "#ffffff",
-                },
-                "& .MuiSelect-select": {
-                  fontFamily: "Inter",
-                  fontWeight: 400,
-                  fontSize: "16px",
-                  lineHeight: "100%",
-                  color: "#ffffff",
-                  paddingBottom: "8px",
-                },
-                "& .MuiSvgIcon-root": {
-                  color: "#ffffff",
-                },
-              }}
-            >
-              <MenuItem
-                value=""
-                disabled
-                sx={{
-                  fontFamily: "Inter",
-                  fontWeight: 400,
-                  fontSize: "16px",
-                  color: "#ffffff",
-                }}
-              >
-                Number of employees*
-              </MenuItem>
-              {dropdownOptions.field5.map((option, index) => (
-                <MenuItem
-                  key={index}
-                  value={option}
-                  sx={{
-                    fontFamily: "Inter",
-                    fontWeight: 400,
-                    fontSize: "16px",
-                    color: "#000000",
-                  }}
-                >
-                  {option}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-
-          {/* Terms and Conditions Checkbox */}
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={formData.termsAccepted}
-                onChange={(e) =>
-                  handleInputChange("termsAccepted", e.target.checked)
-                }
-                sx={{
-                  color: "#ffffff",
-                  "&.Mui-checked": {
+                    lineHeight: "100%",
+                    color: "#ffffff",
+                    paddingBottom: "8px",
+                  },
+                  "& .MuiSvgIcon-root": {
                     color: "#ffffff",
                   },
                 }}
-              />
-            }
-            label={
-              <Typography
+              >
+                <MenuItem
+                  value=""
+                  disabled
+                  sx={{
+                    fontFamily: "Inter",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    color: "#ffffff",
+                  }}
+                >
+                  Startup sector*
+                </MenuItem>
+                {dropdownOptions.field2.map((option, index) => (
+                  <MenuItem
+                    key={index}
+                    value={option}
+                    sx={{
+                      fontFamily: "Inter",
+                      fontWeight: 400,
+                      fontSize: "16px",
+                      color: "#000000",
+                    }}
+                  >
+                    {option}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            {/* Field 3 - Dropdown */}
+            <FormControl fullWidth variant="standard">
+              <Select
+                value={formData.field3}
+                onChange={(e) => handleInputChange("field3", e.target.value)}
+                displayEmpty
                 sx={{
-                  fontFamily: "Inter",
-                  fontWeight: 400,
-                  fontSize: "12px",
-                  lineHeight: "100%",
-                  color: "#ffffff",
+                  backgroundColor: "transparent",
+                  "&:before": {
+                    borderBottomColor: "#ffffff",
+                    borderBottomWidth: "1px",
+                  },
+                  "&:hover:not(.Mui-disabled):before": {
+                    borderBottomColor: "#ffffff",
+                  },
+                  "&:after": {
+                    borderBottomColor: "#ffffff",
+                  },
+                  "& .MuiSelect-select": {
+                    fontFamily: "Inter",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "100%",
+                    color: "#ffffff",
+                    paddingBottom: "8px",
+                  },
+                  "& .MuiSvgIcon-root": {
+                    color: "#ffffff",
+                  },
                 }}
               >
-                I agree to the Terms and Conditions
-              </Typography>
-            }
-            sx={{
-              mt: "10px",
-            }}
-          />
-        </Box>
+                <MenuItem
+                  value=""
+                  disabled
+                  sx={{
+                    fontFamily: "Inter",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    color: "#ffffff",
+                  }}
+                >
+                  Latest funding stage*
+                </MenuItem>
+                {dropdownOptions.field3.map((option, index) => (
+                  <MenuItem
+                    key={index}
+                    value={option}
+                    sx={{
+                      fontFamily: "Inter",
+                      fontWeight: 400,
+                      fontSize: "16px",
+                      color: "#000000",
+                    }}
+                  >
+                    {option}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
 
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            width: "100%",
-            mt: "30px",
-            mb: "30px",
-            px: "20px", // Add horizontal padding
-          }}
-        >
-          <SlideButton text="Submit" onSlideComplete={handleNextPage} />
+            {/* Field 4 - Dropdown */}
+            <FormControl fullWidth variant="standard">
+              <Select
+                value={formData.field4}
+                onChange={(e) => handleInputChange("field4", e.target.value)}
+                displayEmpty
+                sx={{
+                  backgroundColor: "transparent",
+                  "&:before": {
+                    borderBottomColor: "#ffffff",
+                    borderBottomWidth: "1px",
+                  },
+                  "&:hover:not(.Mui-disabled):before": {
+                    borderBottomColor: "#ffffff",
+                  },
+                  "&:after": {
+                    borderBottomColor: "#ffffff",
+                  },
+                  "& .MuiSelect-select": {
+                    fontFamily: "Inter",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "100%",
+                    color: "#ffffff",
+                    paddingBottom: "8px",
+                  },
+                  "& .MuiSvgIcon-root": {
+                    color: "#ffffff",
+                  },
+                }}
+              >
+                <MenuItem
+                  value=""
+                  disabled
+                  sx={{
+                    fontFamily: "Inter",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    color: "#ffffff",
+                  }}
+                >
+                  Revenue generated in <br />
+                  last 12 months(INR)*
+                </MenuItem>
+                {dropdownOptions.field4.map((option, index) => (
+                  <MenuItem
+                    key={index}
+                    value={option}
+                    sx={{
+                      fontFamily: "Inter",
+                      fontWeight: 400,
+                      fontSize: "16px",
+                      color: "#000000",
+                    }}
+                  >
+                    {option}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            {/* Field 5 - Dropdown */}
+            <FormControl fullWidth variant="standard">
+              <Select
+                value={formData.field5}
+                onChange={(e) => handleInputChange("field5", e.target.value)}
+                displayEmpty
+                sx={{
+                  backgroundColor: "transparent",
+                  "&:before": {
+                    borderBottomColor: "#ffffff",
+                    borderBottomWidth: "1px",
+                  },
+                  "&:hover:not(.Mui-disabled):before": {
+                    borderBottomColor: "#ffffff",
+                  },
+                  "&:after": {
+                    borderBottomColor: "#ffffff",
+                  },
+                  "& .MuiSelect-select": {
+                    fontFamily: "Inter",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    lineHeight: "100%",
+                    color: "#ffffff",
+                    paddingBottom: "8px",
+                  },
+                  "& .MuiSvgIcon-root": {
+                    color: "#ffffff",
+                  },
+                }}
+              >
+                <MenuItem
+                  value=""
+                  disabled
+                  sx={{
+                    fontFamily: "Inter",
+                    fontWeight: 400,
+                    fontSize: "16px",
+                    color: "#ffffff",
+                  }}
+                >
+                  Number of employees*
+                </MenuItem>
+                {dropdownOptions.field5.map((option, index) => (
+                  <MenuItem
+                    key={index}
+                    value={option}
+                    sx={{
+                      fontFamily: "Inter",
+                      fontWeight: 400,
+                      fontSize: "16px",
+                      color: "#000000",
+                    }}
+                  >
+                    {option}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+
+            {/* Terms and Conditions Checkbox */}
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={formData.termsAccepted}
+                  onChange={(e) =>
+                    handleInputChange("termsAccepted", e.target.checked)
+                  }
+                  sx={{
+                    color: "#ffffff",
+                    "&.Mui-checked": {
+                      color: "#ffffff",
+                    },
+                  }}
+                />
+              }
+              label={
+                <Typography
+                  sx={{
+                    fontFamily: "Inter",
+                    fontWeight: 400,
+                    fontSize: "12px",
+                    lineHeight: "100%",
+                    color: "#ffffff",
+                  }}
+                >
+                  I agree to the Terms and Conditions
+                </Typography>
+              }
+              sx={{
+                mt: "10px",
+              }}
+            />
+          </Box>
+
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              width: "100%",
+              mt: "30px",
+              mb: "30px",
+            }}
+          >
+            <SlideButton text="Submit" onSlideComplete={handleNextPage} />
+          </Box>
         </Box>
       </Box>
     </>

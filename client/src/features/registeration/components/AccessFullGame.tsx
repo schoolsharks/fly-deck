@@ -113,7 +113,7 @@ const AccessFullGame = () => {
             justifyContent: "center",
             width: "100%",
             mt: "30px",
-            mb: "30px",
+            mb: "10px",
             px: "20px", // Add horizontal padding
           }}
         >
