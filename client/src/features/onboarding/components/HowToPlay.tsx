@@ -63,7 +63,7 @@ const HowToPlay: React.FC<HowToPlayProps> = ({ handleNextPage }) => {
         >
           <Typography
             sx={{
-              fontFamily: "Helvetica Neue",
+              fontFamily: "Inter",
               fontWeight: 500,
               fontSize: "20px",
               lineHeight: "29px",
@@ -77,7 +77,7 @@ const HowToPlay: React.FC<HowToPlayProps> = ({ handleNextPage }) => {
           </Typography>
           <Typography
             sx={{
-              fontFamily: "Helvetica Neue",
+              fontFamily: "Inter",
               fontWeight: 500,
               fontSize: "20px",
               lineHeight: "29px",
@@ -130,6 +130,9 @@ const HowToPlay: React.FC<HowToPlayProps> = ({ handleNextPage }) => {
             letterSpacing: "0%",
             textAlign: "left",
             color: "#FFFFFF",
+            // pl:"10px"
+            // maxWidth:"90%",
+            mx:"auto"
           }}
         >
           Keep answering to unlock your Archetype.

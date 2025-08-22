@@ -185,7 +185,7 @@ const GameLayout = () => {
       >
         <Typography
           sx={{
-            fontFamily: "Helvetica Neue, sans-serif",
+            fontFamily: "Inter, sans-serif",
 
             fontSize: "30px",
             fontWeight: 700,

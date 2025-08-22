@@ -81,7 +81,7 @@ const SlideButton: React.FC<SlideButtonProps> = ({ text, onSlideComplete }) => {
     <Box
       sx={{
         padding: "1px",
-        width: "90%",
+        width: "100%",
         borderRadius: "50px",
         background: `
           radial-gradient(ellipse at top right, 

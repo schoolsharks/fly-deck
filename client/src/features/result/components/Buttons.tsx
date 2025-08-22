@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import SlideButton from "../../../components/ui/SlideButton";
 import { useNavigate } from "react-router-dom";
+import { clearAllFlyDeckData } from "../../../utility/sessionStorage";
 
 interface ButtonsProps {
   userAction?: "claim" | "skip" | null;
@@ -19,9 +20,16 @@ const Buttons = ({ userAction }: ButtonsProps) => {
     console.log("Invite friends");
   };
 
+  // const handlePlayAgain = () => {
+  //   // Logic to play again
+  //   console.log("Play again");
+  //   navigate("/user/onboarding/1");
+  // };
+  
   const handlePlayAgain = () => {
-    // Logic to play again
-    console.log("Play again");
+    // Clear all FlyDeck session storage data before starting a new game
+    clearAllFlyDeckData();
+    console.log("Play again - All session data cleared, starting fresh game");
     navigate("/user/onboarding/1");
   };
 

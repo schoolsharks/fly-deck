@@ -97,7 +97,7 @@ const Submission = () => {
               fontSize: "25px",
               lineHeight: "29px",
               textAlign: "left",
-              mb: "64px",
+              mb: "54px",
             }}
           >
             You are on the waitlist, we’ll notify you soon.
@@ -108,7 +108,7 @@ const Submission = () => {
               fontSize: "25px",
               lineHeight: "29px",
               textAlign: "left",
-              mb: "32px",
+              // mb: "32px",
             }}
           >
             Drop your details so we can send the game to your way!
@@ -161,7 +161,7 @@ const Submission = () => {
                     // minHeight: "14px",
                     height: "24px",
                     overflow: "hidden",
-                    opacity: "50%",
+                    opacity: "80%",
                     // lineHeight: "30px",
                     verticalAlign: "bottom",
                   }}
