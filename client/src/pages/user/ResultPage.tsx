@@ -3,20 +3,37 @@ import ClaimYourReward from "../../features/result/components/ClaimYourReward";
 import { Box } from "@mui/material";
 import Buttons from "../../features/result/components/Buttons";
 import { useEffect, useState } from "react";
-import { getAccessFullGameData } from "../../utility/sessionStorage";
+import {
+  getRewardQuestionsData,
+  getSubmissionData,
+} from "../../utility/sessionStorage";
 
 function ResultPage() {
-  const [userAction, setUserAction] = useState<"claim" | "skip" | null>(null);
+  const [hasCompletedRewardFlow, setHasCompletedRewardFlow] = useState(false);
 
   useEffect(() => {
-    // Get the access full game data from session storage
-    const accessData = getAccessFullGameData();
-    if (accessData) {
-      setUserAction(accessData.action);
-    } else {
-      // Default to 'skip' if no data found (fallback)
-      setUserAction("skip");
-    }
+    // We no longer need to track userAction, just check completion status
+    // Check if user has completed both reward questions and submission
+    const rewardQuestionsData = getRewardQuestionsData();
+    const submissionData = getSubmissionData();
+
+    // More flexible validation for reward questions data
+    const hasRewardQuestions =
+      rewardQuestionsData &&
+      rewardQuestionsData.answers &&
+      rewardQuestionsData.answers.length > 0;
+
+    // More flexible validation for submission data
+    const hasSubmissionData =
+      submissionData &&
+      submissionData.address &&
+      Object.keys(submissionData.address).length > 0 &&
+      (submissionData.address.houseNumber ||
+        submissionData.address.areaLocality ||
+        submissionData.address.cityState ||
+        submissionData.address.pincode); // At least one field filled
+
+    setHasCompletedRewardFlow(Boolean(hasRewardQuestions && hasSubmissionData));
   }, []);
 
   return (
@@ -31,11 +48,16 @@ function ResultPage() {
     >
       <SkyCruiser />
 
-      {/* Conditionally render ClaimYourReward only if user clicked 'skip' */}
-      {userAction === "skip" && <ClaimYourReward />}
+      {/* 
+        Conditionally render ClaimYourReward based on user flow:
+        - If user has completed the reward flow (both questions + submission) → Don't show (they've already claimed)
+        - If user clicked "skip" and hasn't completed reward flow → Show claim option
+        - If user clicked "claim" but hasn't completed both reward questions and submission → Show claim option
+      */}
+      {!hasCompletedRewardFlow && <ClaimYourReward />}
 
-      {/* Pass the user action to Buttons component for conditional button rendering */}
-      <Buttons userAction={userAction} />
+      {/* Pass completion status to Buttons component */}
+      <Buttons hasCompletedRewardFlow={hasCompletedRewardFlow} />
     </Box>
   );
 }

@@ -5,9 +5,10 @@ import { clearAllFlyDeckData } from "../../../utility/sessionStorage";
 
 interface ButtonsProps {
   userAction?: "claim" | "skip" | null;
+  hasCompletedRewardFlow?: boolean;
 }
 
-const Buttons = ({ userAction }: ButtonsProps) => {
+const Buttons = ({ hasCompletedRewardFlow }: ButtonsProps) => {
   const navigate = useNavigate();
 
   const handleClaim = () => {
@@ -15,9 +16,24 @@ const Buttons = ({ userAction }: ButtonsProps) => {
     navigate("/user/game/reward-questions");
   };
 
-  const handleInviteFriends = () => {
-    // Logic to invite friends
-    console.log("Invite friends");
+  const handleShare = () => {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: "Fly Deck",
+          url: window.location.origin,
+        })
+        .catch((error) => console.error("Error sharing:", error));
+    } else {
+      navigator.clipboard
+        .writeText(window.location.origin)
+        .then(() => {
+          alert("Link copied to clipboard! Share it with your friends.");
+        })
+        .catch(() => {
+          alert("Unable to copy link. Please copy the URL manually.");
+        });
+    }
   };
 
   // const handlePlayAgain = () => {
@@ -25,7 +41,7 @@ const Buttons = ({ userAction }: ButtonsProps) => {
   //   console.log("Play again");
   //   navigate("/user/onboarding/1");
   // };
-  
+
   const handlePlayAgain = () => {
     // Clear all FlyDeck session storage data before starting a new game
     clearAllFlyDeckData();
@@ -48,24 +64,18 @@ const Buttons = ({ userAction }: ButtonsProps) => {
           gap: "20px",
         }}
       >
-        {/* Conditional rendering based on userAction */}
-        {userAction === "skip" ? (
-          // If user clicked 'skip' - show "Claim" and "Play Again" buttons
-          <>
-            <SlideButton text="Claim" onSlideComplete={handleClaim} />
-            <SlideButton text="Play Again" onSlideComplete={handlePlayAgain} />
-          </>
-        ) : userAction === "claim" ? (
-          // If user clicked 'claim' - show "Play Again" and "Invite Friends" buttons
+        {/* Conditional rendering based on completion status first, then userAction */}
+        {hasCompletedRewardFlow ? (
+          // If user completed both reward questions and submission - show "Play Again" and "Invite Friends" buttons
           <>
             <SlideButton text="Play Again" onSlideComplete={handlePlayAgain} />
             <SlideButton
               text="Invite Friends"
-              onSlideComplete={handleInviteFriends}
+              onSlideComplete={handleShare}
             />
           </>
         ) : (
-          // Fallback - show all buttons if userAction is null or undefined
+          // If user hasn't completed the reward flow - show "Claim" and "Play Again" buttons
           <>
             <SlideButton text="Claim" onSlideComplete={handleClaim} />
             <SlideButton text="Play Again" onSlideComplete={handlePlayAgain} />

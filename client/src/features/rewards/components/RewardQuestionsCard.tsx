@@ -2,6 +2,11 @@ import { motion } from "framer-motion";
 import { Box, Typography, Button } from "@mui/material";
 import { useState, useEffect } from "react";
 import RewardCardImg from "../../../assets/Rewards/RewardCardImg.webp";
+import {
+  saveRewardQuestionsData,
+  getRewardQuestionsData,
+  type RewardQuestionsData,
+} from "../../../utility/sessionStorage";
 
 // Sample questions data - you can replace with actual data
 export interface RewardQuestion {
@@ -78,8 +83,51 @@ const RewardQuestionsCard = ({
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [isInterestedSelected, setIsInterestedSelected] = useState(false);
 
+  // Recover data from session storage on component mount
+  useEffect(() => {
+    const savedData = getRewardQuestionsData();
+    if (savedData && savedData.answers && savedData.answers.length > 0) {
+      setAnswers(savedData.answers);
+
+      // Set current index based on number of question answers (excluding interested answer)
+      const questionAnswers = savedData.answers.filter(
+        (answer) =>
+          !(typeof answer === "object" && answer.interested !== undefined)
+      );
+      const interestedAnswer = savedData.answers.find(
+        (answer) =>
+          typeof answer === "object" && answer.interested !== undefined
+      );
+
+      // If we have all question answers and no interested answer, show final card
+      if (
+        questionAnswers.length >= rewardQuestions.length &&
+        !interestedAnswer
+      ) {
+        setCurrentIndex(rewardQuestions.length);
+      } else {
+        // Otherwise, set to the number of question answers completed
+        setCurrentIndex(questionAnswers.length);
+      }
+
+      // Set interested selection state
+      if (interestedAnswer) {
+        setIsInterestedSelected(interestedAnswer.interested);
+      }
+    }
+  }, []);
+
+  // Save data to session storage whenever answers change
+  const saveCurrentProgress = (updatedAnswers: any[]) => {
+    const rewardData: RewardQuestionsData = {
+      answers: updatedAnswers,
+      completedAt: new Date().toISOString(),
+    };
+    saveRewardQuestionsData(rewardData);
+  };
+
   // Total cards = questions + 1 final image card
-//   const totalCards = rewardQuestions.length + 1;
+  //   const totalCards = rewardQuestions.length + 1;
   const isOnFinalCard = currentIndex === rewardQuestions.length;
 
   // Notify parent when we reach the final card
@@ -100,6 +148,9 @@ const RewardQuestionsCard = ({
       // Save answer
       const newAnswers = [...answers, optionValue];
       setAnswers(newAnswers);
+
+      // Save progress to session storage
+      saveCurrentProgress(newAnswers);
 
       // Move to next question or show final card
       if (currentIndex < rewardQuestions.length) {
@@ -125,8 +176,15 @@ const RewardQuestionsCard = ({
 
     // Add a small delay for visual feedback like other options
     setTimeout(() => {
+      // Save the interested selection to session storage
+      const interestedAnswer = { interested: true };
+      const updatedAnswers = [...answers, interestedAnswer];
+      setAnswers(updatedAnswers);
+      saveCurrentProgress(updatedAnswers);
+
       // Handle completion or any other action needed
-      console.log("Interested selection completed");
+      console.log("Interested selection completed and saved");
+      onComplete?.(updatedAnswers);
     }, 300);
   };
 
@@ -439,18 +497,20 @@ const RewardQuestionsCard = ({
                     lineHeight: "20px",
                     fontFamily: "Inter, sans-serif",
                     textAlign: "left",
-                    padding:"6px 48px"
+                    padding: "6px 48px",
                   }}
                 >
                   Interested
                 </Typography>
               </Button>
-              <Box sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                marginTop: "18px",
-              }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  marginTop: "18px",
+                }}
+              >
                 <Typography
                   sx={{
                     color: "#000000",
@@ -459,7 +519,7 @@ const RewardQuestionsCard = ({
                     lineHeight: "20px",
                     fontFamily: "Inter, sans-serif",
                     textAlign: "center",
-                    opacity:"50%"
+                    opacity: "50%",
                   }}
                 >
                   If interested, check the box
